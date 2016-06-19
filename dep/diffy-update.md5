@@ -1,0 +1,11 @@
+{
+    "dist/diffNode.js": "b0d2085010d66d6bb80a775d36b0b5e4",
+    "dist/merge.js": "917e5406e1a5ee286f6725f957f4d573",
+    "dist/update.js": "57790c799ffb4b15767e33dc5215677c",
+    "LICENSE": "d9f30c90bf090132fa87500399bf9ae9",
+    "package.json": "e289e8303ec3c0fbe8fe7f56014ab028",
+    "README.md": "51b014e8e6099ad1a694750eff7857e5",
+    "src/diffNode.js": "9e071a71a5f505c922ab08d19bca78b0",
+    "src/merge.js": "b1bfa8beb80da30d752984ff87efdb80",
+    "src/update.js": "299f890d3801d0eed8885fc96a387d2e"
+}
