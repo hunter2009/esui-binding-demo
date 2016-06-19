@@ -1,0 +1,43 @@
+{
+    "name": "binding-todo",
+    "version": "0.0.1",
+    "description": "edp project",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "edp": {
+        "wwwroot": "/",
+        "depDir": "dep",
+        "srcDir": "src",
+        "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
+        "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
+        "dependencies": {
+            "diffy-update": "latest",
+            "eicons": "latest",
+            "emc": "latest",
+            "eoo": "latest",
+            "esf": "latest",
+            "est": "latest",
+            "esui": "latest",
+            "etpl": "latest",
+            "jquery": "latest",
+            "mini-event": "latest",
+            "moment": "latest",
+            "underscore": "latest"
+        },
+        "layout": "v2"
+    },
+    "dependencies": {},
+    "author": "",
+    "repository": "empty",
+    "license": "BSD",
+    "readme": "README",
+    "devDependencies": {
+        "babel-cli": "^6.10.1",
+        "babel-preset-es2015": "^6.9.0",
+        "babel-preset-stage-0": "^6.5.0",
+        "edp": "^1.1.1",
+        "edp-webserver": "^1.2.6"
+    }
+}
