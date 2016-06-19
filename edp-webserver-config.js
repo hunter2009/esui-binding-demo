@@ -27,6 +27,12 @@ exports.getLocations = function () {
             ]
         },
         {
+            location: /^\/src\/external\//,
+            handler: [
+                file()
+            ]
+        },
+        {
             location: /^\/(src|dep)\/.*(\.js|\.js\.map)($|\?)/,
             handler: [
                 babel({sourceMaps: 'inline'}, {babel: babelCore})

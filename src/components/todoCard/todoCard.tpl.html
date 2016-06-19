@@ -1,0 +1,16 @@
+<!-- :main -->
+<header class="${.header}">
+    <h3 class="${.title}">${todo.title}</h3>
+    <!-- if: ${todo.dueDate} -->
+    <time class="${.due-date}" datetime="${*todo.dueDate | date}">截止：${*todo.dueDate | date}</time>
+    <!-- /if -->
+</header>
+<div class="${.content}">${todo.content | markdown}</div>
+<footer class="${.footer}">
+    <!-- if: ${todo.completed} -->
+    <span class="${.hint}">已完成</span>
+    <!-- else: -->
+    <span id="${#complete}" class="${.action}"><i class="ui-icon ui-icon-check"></i>完成</span>
+    <!-- /if -->
+    <span id="${#remove}" class="${.action}"><i class="ui-icon ui-icon-trash"></i>删除</span>
+</footer>

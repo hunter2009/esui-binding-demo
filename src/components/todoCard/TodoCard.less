@@ -1,0 +1,66 @@
+.ui-todo-card {
+    display: block;
+    width: 400px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.ui-todo-card-header {
+    background-color: #434db0;
+    padding: 1.2em;
+
+    & > * {
+        color: #fff;
+    }
+}
+
+.ui-todo-card-title {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.ui-todo-card-due-date {
+    display: block;
+    font-size: .6em;
+    opacity: .8;
+}
+
+.ui-todo-card-content {
+    margin: 0 1.2em;
+    line-height: 1.5;
+}
+
+.ui-todo-card-footer {
+    border-top: 1px solid #e5e5e5;
+    text-align: right;
+    padding: 20px 0;
+}
+
+.ui-todo-card-action,
+.ui-todo-card-hint {
+    padding: 8px 14px;
+    display: inline-block;
+    margin-right: 1em;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+}
+
+.ui-todo-card-action {
+    background-color: #de236c;
+    cursor: pointer;
+    color: #fff;
+
+    & > .ui-icon {
+        padding-right: 6px;
+    }
+
+    &:hover {
+        background-color: lighten(#de236c, 10%);
+    }
+
+}
+
+.ui-todo-card-hint {
+    cursor: default;
+}

@@ -1,0 +1,27 @@
+@dep-path: "../../../dep";
+
+// eicons
+@import "@{dep-path}/eicons/src/main.less";
+@import "@{dep-path}/eicons/src/icon-utils.less";
+
+// 设置font文件地址
+@eicons-font-path: "@{dep-path}/eicons/fonts";
+
+// est
+@import "@{dep-path}/est/src/all.less";
+
+.global-normalize();
+
+// esf
+@import "@{dep-path}/esf/theme/standard/main.less";
+
+.esui-loader-bouncers();
+
+// esui
+@import "@{dep-path}/esui/theme/standard/Main.less";
+
+.ui-app {
+    display: block;
+    font-size: 14px;
+    margin: 20px;
+}
