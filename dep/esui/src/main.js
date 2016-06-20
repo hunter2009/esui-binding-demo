@@ -357,7 +357,7 @@ define(
              * @param {HTMLElement} element 容器DOM元素
              * @return {string | null}
              */
-            function parseTypeFromCustomTag(element) {
+            function parseTypeFormCustomTag(element) {
                 var customElementPrefix = main.getConfig('customElementPrefix');
                 var nodeName = element.nodeName.toLowerCase();
                 var esuiPrefixIndex = nodeName.indexOf(customElementPrefix);
@@ -519,7 +519,7 @@ define(
                             extOption = extensionOptions[extKey] = {};
                         }
 
-                        extendToOption(extOption, terms, value);
+                        extendToOption(extOption, extensionTerms, value);
                     }
                     else if (name.indexOf(uiPrefix) === 0) {
                         var terms = name.length === uiPrefixLen
@@ -558,7 +558,7 @@ define(
                 // 创建控件
                 var type = controlOptions.type;
                 if (!type) {
-                    type = parseTypeFromCustomTag(element);
+                    type = parseTypeFormCustomTag(element);
                     controlOptions.type = type;
                 }
                 if (options.onBuildOptions) {

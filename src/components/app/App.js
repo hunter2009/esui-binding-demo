@@ -9,6 +9,7 @@ import TEMPLATE from 'text!./app.tpl.html';
 import TodoList from '../todoList/TodoList';
 import Button from 'esui/Button';
 import Panel from 'esui/Panel';
+import Sticky from '../Sticky';
 import 'css!./app.css';
 
 let engine = new Engine();

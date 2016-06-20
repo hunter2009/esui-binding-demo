@@ -1,5 +1,5 @@
 <!-- :main -->
-<esui-panel class="${.header}">
+<esui-panel class="${.header}" data-ui-extension-position-type="Sticky">
     <h1 class="${.title}">${username} 待办事项</h1>
     <esui-button class="${.action}" on-click="createTodo"><i class="ui-icon ui-icon-plus"></i></esui-button>
 </esui-panel>
@@ -7,5 +7,6 @@
     bd-datasource="todos"
     on-remove="removeCard($event.todo)"
     on-complete="markComplete($event.todo)"
-    on-save="updateTodo($event.todo)">
+    on-save="updateTodo($event.todo)"
+    on-create="createTodo">
 </esui-todo-list>
