@@ -7,6 +7,8 @@
 .ui-todo-card-header {
     background-color: #434db0;
     padding: 1.2em;
+    height: 70px;
+    box-sizing: border-box;
 
     & > * {
         color: #fff;
@@ -28,6 +30,8 @@
 .ui-todo-card-content {
     margin: 0 1.2em;
     line-height: 1.5;
+    height: 120px;
+    overflow: scroll;
 }
 
 .ui-todo-card-footer {
@@ -50,6 +54,8 @@
     background-color: #de236c;
     cursor: pointer;
     color: #fff;
+    min-height: auto;
+    height: auto;
 
     & > .ui-icon {
         padding-right: 6px;
@@ -57,10 +63,57 @@
 
     &:hover {
         background-color: lighten(#de236c, 10%);
+        color: #fff;
     }
 
 }
 
 .ui-todo-card-hint {
     cursor: default;
+}
+
+.ui-todo-card-header-edit {
+    .ui-textbox {
+        display: block;
+        position: relative;
+
+        input {
+            padding-right: 40px;
+            position: absolute;
+        }
+    }
+
+    .ui-calendar {
+        float: right;
+
+        .ui-calendar-text {
+            display: none;
+        }
+
+        .ui-calendar-arrow {
+            width: 36px;
+            text-align: center;
+            right: 0;
+            color: #de236c;
+
+            &:hover {
+                color: lighten(#de236c, 10%);
+            }
+        }
+    }
+}
+
+.ui-todo-card-content-edit {
+    margin: 0;
+
+    .ui-textbox {
+        display: block;
+        height: 100%;
+
+        textarea {
+            border: none;
+            background-color: #f9f9f9;
+            height: 100%;
+        }
+    }
 }

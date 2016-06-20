@@ -1,4 +1,31 @@
 <!-- :main -->
+<!-- if: ${mode} === 'view' -->
+    <!-- import: view -->
+<!-- else: -->
+    <!-- import: edit -->
+<!-- /if -->
+
+<!-- :edit -->
+<header class="${.header} ${.header-edit}">
+    <esui-text-box bd-value="todo.title" data-ui-width="auto" on-change="sync('title', $event.target)"></esui-text-box>
+    <esui-calendar bd-raw-value="todo.dueDate" on-change="sync('dueDate', $event.target)"></esui-calendar>
+</header>
+<div class="${.content} ${.content-edit}">
+    <esui-text-box
+        data-ui-mode="textarea"
+        data-ui-width="auto"
+        bd-value="todo.content"
+        on-change="sync('content', $event.target)">
+    </esui-text-box>
+</div>
+<footer class="${.footer} ${.footer-edit}">
+    <esui-button id="${#remove}" class="${.action}" on-click="save">
+        <i class="ui-icon ui-icon-save"></i>
+        保存
+    </esui-button>
+</footer>
+
+<!-- :view -->
 <header class="${.header}">
     <h3 class="${.title}">${todo.title}</h3>
     <!-- if: ${todo.dueDate} -->
@@ -10,7 +37,17 @@
     <!-- if: ${todo.completed} -->
     <span class="${.hint}">已完成</span>
     <!-- else: -->
-    <span id="${#complete}" class="${.action}"><i class="ui-icon ui-icon-check"></i>完成</span>
+    <esui-button id="${#complete}" class="${.action}" on-click="fire('complete')">
+        <i class="ui-icon ui-icon-check"></i>
+        完成
+    </esui-button>
+    <esui-button id="${#edit}" class="${.action}" on-click="edit">
+        <i class="ui-icon ui-icon-edit"></i>
+        编辑
+    </esui-button>
     <!-- /if -->
-    <span id="${#remove}" class="${.action}"><i class="ui-icon ui-icon-trash"></i>删除</span>
+    <esui-button id="${#remove}" class="${.action}" on-click="fire('remove')">
+        <i class="ui-icon ui-icon-trash"></i>
+        删除
+    </esui-button>
 </footer>

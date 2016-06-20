@@ -3,10 +3,12 @@ import ui from 'esui';
 import Control from 'esui/Control';
 import marked from 'marked';
 import moment from 'moment';
-import {defaults} from 'diffy-update';
+import {defaults, set} from 'diffy-update';
 import {Engine} from 'etpl';
 import TEMPLATE from 'text!./todoCard.tpl.html';
 import 'css!./TodoCard.css';
+import Calendar from 'esui/Calendar';
+import TextBox from 'esui/TextBox';
 
 let engine = new Engine();
 engine.addFilter('markdown', str => marked(str));
@@ -29,9 +31,9 @@ export default class TodoCard extends Control {
                 title: '',
                 content: '',
                 dueDate: null,
-                completed: false,
-                mode: 'view'
-            }
+                completed: false
+            },
+            mode: 'view'
         };
     }
 
@@ -43,18 +45,28 @@ export default class TodoCard extends Control {
 
     initOptions(options) {
         let properties = defaults(options, null, this.defaultProperties);
+        properties.form = properties.todo;
         this.setProperties(properties);
-    }
-
-    initEvents() {
-        this.helper.addEventForSelector('click', '#complete', () => this.fire('complete'));
-        this.helper.addEventForSelector('click', '#remove', () => this.fire('remove'));
     }
 
     repaint() {
         this.disposeChildren();
-        let viewData = u.pick(this, 'todo');
+        let viewData = u.pick(this, 'todo', 'mode');
         this.main.innerHTML = this.helper.renderTemplate('main', viewData);
+        this.helper.initConnectedChildren();
+    }
+
+    edit() {
+        this.set('mode', 'edit');
+    }
+
+    sync(field, target) {
+        // 不用`set`避免触发`repaint`
+        this.form = set(this.form, field, target.getRawValue());
+    }
+
+    save() {
+        this.fire('save', {todo: this.form});
     }
 }
 

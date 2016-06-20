@@ -5,6 +5,8 @@ import {defaults, set} from 'diffy-update';
 import {Engine} from 'etpl';
 import TEMPLATE from 'text!./app.tpl.html';
 import TodoList from '../todoList/TodoList';
+import Button from 'esui/Button';
+import Panel from 'esui/Panel';
 import 'css!./app.css';
 
 let engine = new Engine();
@@ -17,6 +19,7 @@ export default class App extends Control {
 
     get defaultProperties() {
         return {
+            username: 'Anonymous',
             todos: []
         };
     }
@@ -42,6 +45,7 @@ export default class App extends Control {
     }
 
     initApp() {
+        let username = 'Gray Zhang';
         let todos = [
             {
                 id: 1,
@@ -65,7 +69,7 @@ export default class App extends Control {
                 completed: false
             }
         ];
-        this.set('todos', todos);
+        this.setProperties({username, todos});
     }
 
     removeCard(todo) {
@@ -76,7 +80,16 @@ export default class App extends Control {
     markComplete(todo) {
         let index = this.todos.indexOf(todo);
         let newTodos = set(this.todos, [index, 'completed'], true);
-        console.log(newTodos);
+        this.set('todos', newTodos);
+    }
+
+    createTodo() {
+        console.log('create');
+    }
+
+    updateTodo(todo) {
+        let index = this.todos.findIndex(item => item.id === todo.id);
+        let newTodos = set(this.todos, [index], todo);
         this.set('todos', newTodos);
     }
 }
