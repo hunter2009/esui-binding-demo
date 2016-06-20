@@ -1,7 +1,9 @@
 import u from 'underscore';
 import ui from 'esui';
+import $ from 'jquery';
 import Control from 'esui/Control';
-import {defaults, set} from 'diffy-update';
+import {defaults, set, invoke} from 'diffy-update';
+import moment from 'moment';
 import {Engine} from 'etpl';
 import TEMPLATE from 'text!./app.tpl.html';
 import TodoList from '../todoList/TodoList';
@@ -44,31 +46,10 @@ export default class App extends Control {
         this.helper.initConnectedChildren();
     }
 
-    initApp() {
+    async initApp() {
         let username = 'Gray Zhang';
-        let todos = [
-            {
-                id: 1,
-                title: '吃饭',
-                content: '**一定**要吃饱',
-                dueDate: new Date(),
-                completed: false
-            },
-            {
-                id: 2,
-                title: '睡觉',
-                content: '睡得香',
-                dueDate: new Date(),
-                completed: false
-            },
-            {
-                id: 3,
-                title: '打豆豆',
-                content: '豆豆是谁？',
-                dueDate: new Date(),
-                completed: false
-            }
-        ];
+        let todos = await $.getJSON('/api/todos.json');
+        todos = todos.map(todo => invoke(todo, 'dueDate', date => moment(date, 'YYYYMMDD').toDate()));
         this.setProperties({username, todos});
     }
 
