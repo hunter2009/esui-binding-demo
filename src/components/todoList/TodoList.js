@@ -21,7 +21,8 @@ export default class TodoList extends Control {
 
     get defaultProperties() {
         return {
-            datasource: []
+            datasource: [],
+            createNew: false
         };
     }
 
@@ -38,7 +39,7 @@ export default class TodoList extends Control {
 
     repaint() {
         this.disposeChildren();
-        let viewData = u.pick(this, 'datasource');
+        let viewData = u.pick(this, 'datasource', 'createNew');
         this.main.innerHTML = this.helper.renderTemplate('main', viewData);
         this.helper.initConnectedChildren();
     }

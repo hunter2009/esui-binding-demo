@@ -7,4 +7,12 @@
     on-save="fire('save', {todo: $event.todo})">
 </esui-todo-card>
 <!-- /for -->
-<esui-button class="${.create-todo}" on-click="fire('create')"><i class="ui-icon ui-icon-plus"></i></esui-button>
+<!-- if: ${createNew} -->
+    <esui-todo-card
+        data-ui-mode="edit"
+        on-save="fire('create', {todo: $event.todo})"
+        on-cancel="fire('cancel')">
+    </esui-todo-card>
+<!-- else: -->
+    <esui-button class="${.create-todo}" on-click="fire('new')"><i class="ui-icon ui-icon-plus"></i></esui-button>
+<!-- /if -->

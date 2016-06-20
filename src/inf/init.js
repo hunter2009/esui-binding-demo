@@ -46,7 +46,7 @@ let addHooks = options => {
                             (result, {name, newValue}) => {
                                 let binding = propertyBindingIndex[name];
                                 let value = binding.path.reduce((value, property) => value[property], newValue);
-                                return Object.assign(result, {[name]: value});
+                                return Object.assign(result, {[binding.name]: value});
                             },
                             {}
                         );

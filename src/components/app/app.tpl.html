@@ -5,8 +5,12 @@
 </esui-panel>
 <esui-todo-list
     bd-datasource="todos"
+    bd-create-new="createNew"
     on-remove="removeCard($event.todo)"
     on-complete="markComplete($event.todo)"
     on-save="updateTodo($event.todo)"
-    on-create="createTodo">
+    on-create="saveNewTodo($event.todo)"
+    on-cancel="cancelCreateTodo"
+    on-new="createTodo">
 </esui-todo-list>
+<esui-scroll bd-value="scroll"></esui-scroll>

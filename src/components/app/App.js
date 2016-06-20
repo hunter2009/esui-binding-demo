@@ -2,13 +2,14 @@ import u from 'underscore';
 import ui from 'esui';
 import $ from 'jquery';
 import Control from 'esui/Control';
-import {defaults, set, invoke} from 'diffy-update';
+import {defaults, set, invoke, push} from 'diffy-update';
 import moment from 'moment';
 import {Engine} from 'etpl';
 import TEMPLATE from 'text!./app.tpl.html';
 import TodoList from '../todoList/TodoList';
 import Button from 'esui/Button';
 import Panel from 'esui/Panel';
+import Scroll from '../scroll/Scroll';
 import Sticky from '../Sticky';
 import 'css!./app.css';
 
@@ -23,7 +24,9 @@ export default class App extends Control {
     get defaultProperties() {
         return {
             username: 'Anonymous',
-            todos: []
+            todos: [],
+            createNew: false,
+            scroll: 0
         };
     }
 
@@ -66,13 +69,22 @@ export default class App extends Control {
     }
 
     createTodo() {
-        console.log('create');
+        this.setProperties({createNew: true, scroll: 'bottom'});
     }
 
     updateTodo(todo) {
         let index = this.todos.findIndex(item => item.id === todo.id);
         let newTodos = set(this.todos, [index], todo);
         this.set('todos', newTodos);
+    }
+
+    saveNewTodo(todo) {
+        let newTodos = push(this.todos, null, todo);
+        this.setProperties({todos: newTodos, createNew: false});
+    }
+
+    cancelCreateTodo() {
+        this.set('createNew', false);
     }
 }
 

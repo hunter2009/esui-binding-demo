@@ -68,6 +68,17 @@ export default class TodoCard extends Control {
     save() {
         this.fire('save', {todo: this.form});
     }
+
+    cancel() {
+        // 编辑，直接换回视图模式，编辑到一半的数据保留着
+        if (this.todo.id) {
+            this.set('mode', 'view');
+        }
+        // 新增
+        else {
+            this.fire('cancel');
+        }
+    }
 }
 
 ui.register(TodoCard);
