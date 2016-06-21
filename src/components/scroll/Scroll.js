@@ -20,7 +20,7 @@ export default class Scroll extends Control {
     }
 
     repaint() {
-        if (this.timer) {
+        if (this.timer || this.scroll == null) {
             return;
         }
 
@@ -42,8 +42,7 @@ export default class Scroll extends Control {
             window.scrollTo(0, this.value);
         }
 
-        // 为了每次生效，直接重置`value`值
-        this.value = null;
+        this.fire('scroll');
     }
 }
 

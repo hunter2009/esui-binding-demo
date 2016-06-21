@@ -41,7 +41,7 @@ let addHooks = options => {
                 control.owner.on(
                     'propertyset',
                     ({target, changes}) => {
-                        let awareChanges = changes.filter(({name}) => propertyBindingIndex.hasOwnProperty(name));
+                        let awareChanges = changes.filter(({name}) => name in propertyBindingIndex);
                         let properties = awareChanges.reduce(
                             (result, {name, newValue}) => {
                                 let binding = propertyBindingIndex[name];
@@ -55,8 +55,22 @@ let addHooks = options => {
                 );
             }
             else {
-                // inputSource.on('change', ({name, newValue}) => control.set(name, newValue));
-                // TODO: 处理Model的case
+                inputSource.on(
+                    'update',
+                    ({diff, target}) => {
+                        // 此算法可根据`diff`进一步优化的
+                        let awareKeys = Object.keys(diff).filter(key => key in propertyBindingIndex);
+                        let properties = awareKeys.reduce(
+                            (result, key) => {
+                                let binding = propertyBindingIndex[key];
+                                let value = binding.path.reduce((value, property) => value[property], target.get(key));
+                                return Object.assign(result, {[binding.name]: value});
+                            },
+                            {}
+                        );
+                        control.setProperties(properties);
+                    }
+                );
             }
 
             for (let {name, handler} of control.bindings.events) {
