@@ -74,7 +74,7 @@ export default class App extends Control {
 
     updateTodo(todo) {
         let index = this.todos.findIndex(item => item.id === todo.id);
-        let newTodos = set(this.todos, [index], todo);
+        let newTodos = set(this.todos, index, todo);
         this.set('todos', newTodos);
     }
 
@@ -85,6 +85,11 @@ export default class App extends Control {
 
     cancelCreateTodo() {
         this.set('createNew', false);
+    }
+
+    resetScrollState() {
+        // 因为实现比较暴力，所以这里不能用`set`，不然视图又整个重刷了
+        this.scroll = null;
     }
 }
 

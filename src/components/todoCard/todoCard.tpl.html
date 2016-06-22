@@ -7,14 +7,14 @@
 
 <!-- :edit -->
 <header class="${.header} ${.header-edit}">
-    <esui-text-box bd-value="form.title" data-ui-width="auto" on-change="sync('title', $event.target)"></esui-text-box>
-    <esui-calendar bd-raw-value="form.dueDate" on-change="sync('dueDate', $event.target)"></esui-calendar>
+    <esui-text-box es-value="form.title" data-ui-width="auto" on-change="sync('title', $event.target)"></esui-text-box>
+    <esui-calendar es-raw-value="form.dueDate" on-change="sync('dueDate', $event.target)"></esui-calendar>
 </header>
 <div class="${.content} ${.content-edit}">
     <esui-text-box
         data-ui-mode="textarea"
         data-ui-width="auto"
-        bd-value="form.content"
+        es-value="form.content"
         on-change="sync('content', $event.target)">
     </esui-text-box>
 </div>

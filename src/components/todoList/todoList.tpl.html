@@ -1,7 +1,7 @@
 <!-- :main -->
 <!-- for: ${datasource} as ${item}, ${index} -->
 <esui-todo-card
-    bd-todo="datasource.${index}"
+    es-todo="datasource.${index}"
     on-remove="fire('remove', {todo: $event.target.todo})"
     on-complete="fire('complete', {todo: $event.target.todo})"
     on-save="fire('save', {todo: $event.todo})">

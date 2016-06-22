@@ -5,8 +5,8 @@
         <esui-button class="action" on-click="createTodo"><i class="ui-icon ui-icon-plus"></i></esui-button>
     </esui-panel>
     <esui-todo-list
-        bd-datasource="todos"
-        bd-create-new="createNew"
+        es-datasource="todos"
+        es-create-new="createNew"
         on-remove="removeCard($event.todo)"
         on-complete="markComplete($event.todo)"
         on-save="updateTodo($event.todo)"
@@ -14,5 +14,5 @@
         on-cancel="cancelCreateTodo"
         on-new="createTodo">
     </esui-todo-list>
-    <esui-scroll bd-value="scroll" on-scroll="resetScrollState"></esui-scroll>
+    <esui-scroll es-value="scroll" on-scroll="resetScrollState"></esui-scroll>
 </main>

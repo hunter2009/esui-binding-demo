@@ -20,7 +20,7 @@ export default class Scroll extends Control {
     }
 
     repaint() {
-        if (this.timer || this.scroll == null) {
+        if (this.timer || this.value == null) {
             return;
         }
 
