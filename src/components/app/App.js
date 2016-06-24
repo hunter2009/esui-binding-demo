@@ -44,8 +44,7 @@ export default class App extends Control {
         this.setProperties(properties);
     }
 
-    repaint() {
-        this.disposeChildren();
+    initStructure() {
         this.main.innerHTML = this.helper.renderTemplate('main', this);
         this.helper.initConnectedChildren();
     }
@@ -88,8 +87,7 @@ export default class App extends Control {
     }
 
     resetScrollState() {
-        // 因为实现比较暴力，所以这里不能用`set`，不然视图又整个重刷了
-        this.scroll = null;
+        this.set('scroll', null);
     }
 }
 
