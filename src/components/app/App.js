@@ -26,7 +26,8 @@ export default class App extends Control {
             username: 'Anonymous',
             todos: [],
             createNew: false,
-            scroll: 0
+            scroll: 0,
+            autoIncrement: 0
         };
     }
 
@@ -53,7 +54,8 @@ export default class App extends Control {
         let username = 'Gray Zhang';
         let todos = await $.getJSON('/api/todos.json');
         todos = todos.map(todo => invoke(todo, 'dueDate', date => moment(date, 'YYYYMMDD').toDate()));
-        this.setProperties({username, todos});
+        let autoIncrement = todos.length;
+        this.setProperties({username, todos, autoIncrement});
     }
 
     removeCard(todo) {
@@ -77,7 +79,8 @@ export default class App extends Control {
         this.set('todos', newTodos);
     }
 
-    saveNewTodo(todo) {
+    saveNewTodo(form) {
+        let todo = set(form, 'id', this.autoIncrement++);
         let newTodos = push(this.todos, null, todo);
         this.setProperties({todos: newTodos, createNew: false});
     }
