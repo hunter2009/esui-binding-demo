@@ -1,6 +1,6 @@
 import u from 'underscore';
 import $ from 'jquery';
-import {set, invoke, push} from 'diffy-update';
+import {set, invoke} from 'diffy-update';
 import moment from 'moment';
 import Model from 'emc/Model';
 import etpl from 'etpl';
@@ -23,34 +23,32 @@ export default class TodoViewModel extends Model {
         let todos = await $.getJSON('/api/todos.json');
         todos = todos.map(todo => invoke(todo, 'dueDate', date => moment(date, 'YYYYMMDD').toDate()));
         this.set('todos', todos);
+        this.autoInrement = todos.length;
     }
 
     removeCard(todo) {
-        let newTodos = u.without(this.get('todos'), todo);
-        this.set('todos', newTodos);
+        /* eslint-disable fecs-use-method-definition */
+        this.update({todos: {$invoke: todos => u.without(todos, todo)}});
+        /* eslint-enable fecs-use-method-definition */
     }
 
     markComplete(todo) {
         let index = this.get('todos').indexOf(todo);
-        let newTodos = set(this.get('todos'), [index, 'completed'], true);
-        this.set('todos', newTodos);
+        this.update({todos: {[index]: {completed: {$set: true}}}});
     }
 
     createTodo() {
-        this.set('createNew', true);
-        this.set('scroll', 'bottom');
+        this.update({createNew: {$set: true}, scroll: {$set: 'bottom'}});
     }
 
     updateTodo(todo) {
         let index = this.get('todos').findIndex(item => item.id === todo.id);
-        let newTodos = set(this.get('todos'), [index], todo);
-        this.set('todos', newTodos);
+        this.update({todos: {[index]: {$set: todo}}});
     }
 
-    saveNewTodo(todo) {
-        let newTodos = push(this.get('todos'), null, todo);
-        this.set('todos', newTodos);
-        this.set('createNew', false);
+    saveNewTodo(form) {
+        let todo = set(form, 'id', this.autoInrement++);
+        this.update({todos: {$push: todo}, createNew: {$set: false}});
     }
 
     cancelCreateTodo() {
